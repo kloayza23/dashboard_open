@@ -1,3 +1,4 @@
+# Importacion de librerias
 from pymongo import MongoClient
 import pandas as pd
 import json
