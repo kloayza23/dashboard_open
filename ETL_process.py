@@ -5,9 +5,7 @@ import json
 
 # Conexion con MongoDb
 mongClient = MongoClient('127.0.0.1', 27017)
-mongClient.db_iris.dropDatabase()
 db = mongClient.db_iris
-
 # Fase Extraccion
 file_data = 'iris.csv'
 iris_dat = pd.read_csv(file_data, sep=',')
@@ -34,11 +32,16 @@ df_cant_variedad = pd.DataFrame(cant_tot_variedad,index=label_variedad,columns =
 # Fase Carga (Loading)
 
 setosa_coll = json.loads(setosa_data.T.to_json()).values()
+db.setosa.drop()
 db.setosa.insert(setosa_coll)
 versicolor_coll = json.loads(versicolor_data.T.to_json()).values()
+db.versicolor.drop()
 db.versicolor.insert(versicolor_coll)
 virginica_coll = json.loads(virginica_data.T.to_json()).values()
+db.virginica.drop()
 db.virginica.insert(virginica_coll)
-cant_variedad_coll = json.loads(df_cant_variedad.T.to_json()).values()
+cant_variedad_coll = json.loads(df_cant_variedad.to_json()).values()
+db.cant_variedad.drop()
 db.cant_variedad.insert(cant_variedad_coll)
 
+    
