@@ -4,7 +4,8 @@ import pandas as pd
 import json
 
 # Conexion con MongoDb
-mongClient = MongoClient('127.0.0.1', 27017) 
+mongClient = MongoClient('127.0.0.1', 27017)
+mongClient.db_iris.dropDatabase()
 db = mongClient.db_iris
 
 # Fase Extraccion
@@ -26,6 +27,7 @@ cant_virginica=len(virginica_data)
 
 # Totales por variedad
 cant_tot_variedad = [cant_setosa, cant_versicolor, cant_virginica]
+print(cant_tot_variedad)
 label_variedad =['Setosa','Versicolor','Virginica']
 
 df_cant_variedad = pd.DataFrame(cant_tot_variedad,index=label_variedad,columns =['Variedad'])
