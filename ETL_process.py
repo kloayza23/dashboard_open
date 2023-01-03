@@ -43,5 +43,3 @@ db.virginica.insert(virginica_coll)
 cant_variedad_coll = json.loads(df_cant_variedad.to_json()).values()
 db.cant_variedad.drop()
 db.cant_variedad.insert(cant_variedad_coll)
-
-    
